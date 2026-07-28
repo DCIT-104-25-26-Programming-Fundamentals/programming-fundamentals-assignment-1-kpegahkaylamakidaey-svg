@@ -60,3 +60,92 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def transpose_matrix(matrix):
+    # Manual transposition using basic loop generation
+    transposed = []
+    rows = len(matrix)
+    cols = len(matrix[0])
+    
+    for j in range(cols):
+        new_row = []
+        for i in range(rows):
+            new_row.append(matrix[i][j])
+        transposed.append(new_row)
+    return transposed
+
+def add_matrices(matrix_A, matrix_B):
+    result_matrix = []
+    for i in range(len(matrix_A)):
+        new_row = []
+        for j in range(len(matrix_A[0])):
+            sum_value = matrix_A[i][j] + matrix_B[i][j]
+            new_row.append(sum_value)
+        result_matrix.append(new_row)
+    return result_matrix
+
+def multiply_matrices(matrix_A, matrix_B):
+    result_matrix = []
+    # Create a blank matrix filled with zeros using basic loops
+    for i in range(len(matrix_A)):
+        row_placeholder = []
+        for j in range(len(matrix_B[0])):
+            row_placeholder.append(0)
+        result_matrix.append(row_placeholder)
+        
+    # Standard 3-nested loop matrix multiplication logic
+    for i in range(len(matrix_A)):
+        for j in range(len(matrix_B[0])):
+            for k in range(len(matrix_B)):
+                result_matrix[i][j] += matrix_A[i][k] * matrix_B[k][j]
+    return result_matrix
+
+def ask_user_for_matrix(matrix_label):
+    print("\nEnter details for", matrix_label, ":")
+    row_count = int(input("Enter number of rows: "))
+    col_count = int(input("Enter number of columns: "))
+    
+    built_matrix = []
+    for i in range(1, row_count + 1):
+        line_input = input("Enter row " + str(i) + ": ")
+        # Split line by spaces and convert strings to integers manually
+        string_tokens = line_input.split()
+        integer_row = []
+        for token in string_tokens:
+            integer_row.append(int(token))
+        built_matrix.append(integer_row)
+    return built_matrix
+
+def display_matrix(matrix):
+    for row in matrix:
+        for val in row:
+            print(val, end=" ")
+        print()
+
+def main():
+    print("--- PART A: Transpose Matrix ---")
+    matrix_a = ask_user_for_matrix("Matrix A")
+    print("\nOriginal Matrix:")
+    display_matrix(matrix_a)
+    print("\nTransposed Matrix:")
+    display_matrix(transpose_matrix(matrix_a))
+
+    print("\n--- PART B: Add Two Matrices ---")
+    m1 = ask_user_for_matrix("Matrix 1")
+    m2 = ask_user_for_matrix("Matrix 2")
+    if len(m1) != len(m2) or len(m1[0]) != len(m2[0]):
+        print("Error: Dimensions must match for addition.")
+    else:
+        print("\nResult of Addition:")
+        display_matrix(add_matrices(m1, m2))
+
+    print("\n--- PART C: Multiply Two Matrices ---")
+    mult_A = ask_user_for_matrix("Matrix A")
+    mult_B = ask_user_for_matrix("Matrix B")
+    if len(mult_A[0]) != len(mult_B):
+        print("Error: Columns of Matrix A must match rows of Matrix B.")
+    else:
+        print("\nResult of Multiplication:")
+        display_matrix(multiply_matrices(mult_A, mult_B))
+
+if __name__ == "__main__":
+    main()

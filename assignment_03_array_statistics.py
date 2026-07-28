@@ -39,3 +39,56 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+# Manual sum function without using built-in sum()
+def find_total(numbers_list):
+    total = 0
+    for item in numbers_list:
+        total = total + item
+    return total
+
+# Manual average calculation
+def find_average(numbers_list):
+    if len(numbers_list) == 0:
+        return 0.0
+    return find_total(numbers_list) / len(numbers_list)
+
+# Manual max finder without using built-in max()
+def find_maximum(numbers_list):
+    highest = numbers_list[0]
+    for item in numbers_list:
+        if item > highest:
+            highest = item
+    return highest
+
+# Manual min finder without using built-in min()
+def find_minimum(numbers_list):
+    lowest = numbers_list[0]
+    for item in numbers_list:
+        if item < lowest:
+            lowest = item
+    return lowest
+
+def main():
+    user_count = input("How many numbers? ")
+    total_elements = int(user_count)
+    
+    if total_elements <= 0:
+        print("Error: Please enter a positive number.")
+        return
+        
+    collected_numbers = []
+    
+    # Loop to collect inputs from user one by one
+    for count in range(1, total_elements + 1):
+        num_input = input("Enter number " + str(count) + ": ")
+        actual_num = float(num_input)
+        collected_numbers.append(actual_num)
+        
+    print("\nResults:")
+    print("Sum:", find_total(collected_numbers))
+    print("Average:", round(find_average(collected_numbers), 1))
+    print("Maximum:", find_maximum(collected_numbers))
+    print("Minimum:", find_minimum(collected_numbers))
+
+if __name__ == "__main__":
+    main()

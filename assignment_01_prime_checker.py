@@ -35,3 +35,28 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+def check_if_prime(num):
+    # Numbers less than 2 are not prime numbers
+    if num < 2:
+        return False
+        
+    # Check for factors manually using a simple loop
+    for i in range(2, num):
+        if num % i == 0:
+            return False # Found a factor, so it is not prime
+            
+    return True # No factors found, so it is prime
+
+def main():
+    user_input = input("Enter a number: ")
+    target_number = int(user_input)
+    
+    if check_if_prime(target_number):
+        print(target_number, "is a prime number.")
+    else:
+        print(target_number, "is NOT a prime number.")
+
+if __name__ == "__main__":
+    main()
+

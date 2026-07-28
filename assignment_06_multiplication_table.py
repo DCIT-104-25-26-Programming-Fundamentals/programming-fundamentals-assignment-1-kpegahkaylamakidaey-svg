@@ -55,3 +55,45 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+# PART A: Print a single table from 1 to 12
+def print_single_table(num):
+    print("Multiplication Table for " + str(num) + ":")
+    for i in range(1, 13):
+        answer = num * i
+        print(num, "x", i, "=", answer)
+
+# PART B: Bonus tables from 1 to N
+def print_all_tables_up_to_n(n):
+    for current_num in range(1, n + 1):
+        print_single_table(current_num)
+        print("---") # The required separator line
+
+def main():
+    try:
+        # Execute Part A
+        user_input_a = input("Enter a number: ")
+        number_a = int(user_input_a)
+        
+        if number_a <= 0:
+            print("Error: Number must be a positive integer.")
+            return # Stop execution
+            
+        print_single_table(number_a)
+        print() # Clean spacing line
+        
+        # Execute Part B
+        user_input_b = input("Enter a number N: ")
+        number_b = int(user_input_b)
+        
+        # Validation check for Part B as requested
+        if number_b <= 0:
+            print("Error: N must be a positive integer.")
+            return # Stop execution
+            
+        print_all_tables_up_to_n(number_b)
+        
+    except ValueError:
+        print("Error: Please enter a valid whole number.")
+
+if __name__ == "__main__":
+    main()
